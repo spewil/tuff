@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { products, getProduct } from "../../data/products";
+import { url } from "../../lib/url";
 
 export function getStaticPaths() {
   return products.map((product) => ({
@@ -21,7 +22,7 @@ const ctaLabel = isPreorder ? "Pre-order" : "Add to cart";
 <Layout title={`${product.name} — TUFF`} description={product.blurb}>
   <section class="product wrap">
     <div class="gallery">
-      {product.images.map((src) => <img src={src} alt={product.name} />)}
+      {product.images.map((src) => <img src={url(src)} alt={product.name} />)}
     </div>
 
     <div class="info">
