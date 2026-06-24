@@ -1,70 +1,198 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Window from "../components/Window.astro";
 import ProductCard from "../components/ProductCard.astro";
 import { products } from "../data/products";
+import { url } from "../lib/url";
 ---
 
 <Layout>
+  <!-- ===================== HERO COLLAGE ===================== -->
   <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Limited edition apparel</p>
-      <h1>BUILT<br />TUFF.</h1>
-      <p class="lede">
-        Small-batch drops. Made in limited numbers. Never restocked.
-      </p>
-      <a href="#drops" class="btn">Shop the drop</a>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow blink">◆ NOW BOOTING TUFF.SYS ◆</p>
+        <h1 class="chrome-text">TUFF</h1>
+        <h2 class="comic tagline">built tuff.™ for the bois &amp; grls who synergize.</h2>
+        <p class="memo subhead">
+          A limited-edition apparel concern. Small batches. Never restocked.
+          Pre-order now, vibe in Q3.
+        </p>
+        <div class="cta-row">
+          <a href="#stuff" class="btn-aero hot">ENTER THE STORE ►</a>
+          <a href={url("/factory")} class="btn-95">THE TUFF FACTORY</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="photo cherub-photo">
+          <span class="tape" style="top:-12px;left:30px;transform:rotate(-7deg);"></span>
+          <span class="tape" style="top:-10px;right:24px;transform:rotate(6deg);"></span>
+          <img src={url("/collage/putto.jpg")} alt="Putto, after the Met (CC0)" />
+          <span class="caption">fig. 4 — a tuff lil guy</span>
+        </div>
+        <div class="sticker starburst" style="top:-26px;right:-10px;transform:rotate(12deg);">
+          NEW<br />S'TUFF!
+        </div>
+        <div class="sticker smiley hide-mobile" style="bottom:30px;left:-30px;transform:rotate(-10deg);"></div>
+        <div class="sticker orb hide-mobile" style="top:90px;left:-44px;"></div>
+        <div class="sticker stamp" style="bottom:-22px;right:14px;">Certified<br />100%<br />TUFF</div>
+      </div>
     </div>
   </section>
 
-  <section id="drops" class="drops">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Current drops</h2>
-        <span class="eyebrow">{products.length} live</span>
+  <div class="marquee alt"><span>
+    NOW HIRING VIBES ✦ NOW HIRING VIBES ✦ NOW HIRING VIBES ✦ NOW HIRING VIBES ✦
+    NOW HIRING VIBES ✦ NOW HIRING VIBES ✦
+  </span></div>
+
+  <!-- ===================== S'TUFF ===================== -->
+  <section id="stuff" class="drops wrap">
+    <Window title="C:\TUFF\S'TUFF — Windows Explorer" skin="win95">
+      <div class="drops-head">
+        <span class="pixel">{products.length} item(s) &mdash; {products.length} object(s) selected</span>
+        <span class="tag preorder">PRE-ORDER OPEN</span>
       </div>
       <div class="grid">
         {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </Window>
+  </section>
+
+  <!-- ===================== ABOUT (corporate satire) ===================== -->
+  <section id="about" class="about wrap">
+    <div class="about-grid">
+      <Window title="EXECUTIVE MEMORANDUM.doc" skin="gold">
+        <h3 class="gold-text" style="font-size:1.8rem;margin-bottom:0.6rem;">Re: The TUFF Mission</h3>
+        <p class="memo">
+          TUFF ENTERPRISES™ is a forward-leaning, vertically-integrated lifestyle
+          asset class. We do not sell hats. We sell <em>shareholder feelings</em>.
+          Our cherubs work in synergy. Our brims are best-in-class. Per my last email,
+          please find attached the vibe.
+        </p>
+        <p class="memo" style="margin-top:0.8rem;">
+          Mission-critical deliverables include: looking tuff, being tuff, and
+          circling back. We are excited to leverage this s'tuff going forward.
+        </p>
+        <p class="memo" style="margin-top:0.8rem;text-align:right;">
+          — The Management <span class="comic">(a cherub)</span>
+        </p>
+      </Window>
+
+      <div class="art-stack">
+        <Window title="art.bmp" skin="chrome">
+          <img src={url("/collage/venus.jpg")} alt="Venus, bronze, Massimiliano Soldani" class="framed" />
+          <p class="pixel" style="text-align:center;margin-top:6px;font-size:14px;">
+            FIG 1. ASSET (APPRECIATING)
+          </p>
+        </Window>
+        <div class="sticker starburst lime" style="top:-22px;left:-22px;transform:rotate(-14deg);">
+          BUY<br />NOW
+        </div>
       </div>
     </div>
   </section>
 
   <style>
     .hero {
-      padding: 7rem 0 5rem;
-      border-bottom: 1px solid var(--line);
+      position: relative;
+      padding: 3rem 0 2.5rem;
+      overflow: visible;
     }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .eyebrow.blink { margin-bottom: 0.5rem; }
     .hero h1 {
-      font-size: clamp(3.5rem, 14vw, 9rem);
-      font-weight: 800;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      margin: 1rem 0 1.5rem;
+      font-size: clamp(5rem, 20vw, 13rem);
+      line-height: 0.82;
+      margin: 0.2rem 0;
     }
-    .lede {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 32ch;
-      margin-bottom: 2rem;
+    .tagline {
+      font-size: clamp(1.3rem, 3.5vw, 2.1rem);
+      color: var(--navy);
+      text-shadow: 2px 2px 0 #fff;
+      margin-bottom: 0.8rem;
+      line-height: 1.05;
     }
-    .drops {
-      padding: 4rem 0;
+    .subhead {
+      max-width: 40ch;
+      font-size: 1.05rem;
+      color: #1a2a12;
+      background: rgba(255, 255, 255, 0.55);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 1.4rem;
     }
-    .section-head {
+    .cta-row {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 2rem;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
     }
-    .section-head h2 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .hero-art {
+      position: relative;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+    }
+    .cherub-photo {
+      width: 100%;
+      max-width: 300px;
+      transform: rotate(3deg);
+    }
+
+    .drops {
+      margin-top: 2.5rem;
+    }
+    .drops-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .about {
+      margin-top: 3.5rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 1.6rem;
+      align-items: start;
+    }
+    .about .memo {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #3a2e0a;
+    }
+    .art-stack {
+      position: relative;
+    }
+    .framed {
+      width: 100%;
+      border: 3px solid #2a2f37;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 820px) {
+      .hero-inner,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-art {
+        min-height: 300px;
+      }
     }
   </style>
 </Layout>

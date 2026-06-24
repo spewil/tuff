@@ -43,16 +43,46 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    slug: "tuff-boi",
+    name: "TUFF BOI",
+    price: "$44",
+    status: "preorder",
+    shipEstimate: "Ships Q3 2026",
+    blurb: "Comic Sans embroidery. For the boi who synergizes.",
+    description: [
+      "A structured 6-panel cap with a chunky Comic Sans wordmark embroidered front and center. Premium brushed cotton, adjustable strap, mid-profile crown.",
+      "TUFF BOI is not a hat. TUFF BOI is a deliverable. A wholly owned subsidiary of your head.",
+      "Limited first run. Pre-order now — card charged today, ships Q3 2026. Per our last email, please find your new favorite cap attached.",
+    ],
+    images: ["/drops/tuff-boi.svg"],
+    sizes: [{ label: "One Size", stripeLink: "" }],
+  },
+  {
+    slug: "tuff-grl",
+    name: "TUFF GRL",
+    price: "$44",
+    status: "preorder",
+    shipEstimate: "Ships Q3 2026",
+    blurb: "Bubblegum gloss. Comic Sans coded. Eternally tuff.",
+    description: [
+      "The TUFF GRL cap: a structured 6-panel in high-gloss bubblegum with a hand-rotated Comic Sans wordmark. Adjustable strap. Certified 100% TUFF.",
+      "Circles back harder than any cap in the category. Best-in-class brim. Mission-critical vibes.",
+      "Limited first run. Pre-order now — card charged today, ships Q3 2026.",
+    ],
+    images: ["/drops/tuff-grl.svg"],
+    sizes: [{ label: "One Size", stripeLink: "" }],
+  },
+  {
     slug: "vol-01-heavyweight-tee",
     name: "VOL.01 — Heavyweight Tee",
     price: "$65",
-    status: "preorder",
+    status: "coming-soon",
     shipEstimate: "Ships August 2026",
-    blurb: "300gsm boxy tee. First drop. 100 made.",
+    blurb: "300gsm boxy tee. First apparel s'tuff. 100 made.",
     description: [
-      "The inaugural TUFF piece. A 300gsm garment-dyed heavyweight tee with a boxy, structured fit and a hand-finished hem.",
+      "The inaugural TUFF garment. A 300gsm garment-dyed heavyweight tee with a boxy, structured fit and a hand-finished hem.",
       "Limited to 100 units. Once they're gone, they're gone — this exact run will never be reprinted.",
-      "Pre-order now to lock yours in. Cards are charged at checkout and pieces ship August 2026.",
+      "Join the list. Cards are charged at checkout and pieces ship August 2026.",
     ],
     images: ["/drops/placeholder.svg"],
     sizes: [

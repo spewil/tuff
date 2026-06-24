@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="bubblegum" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe3f4"/>
+      <stop offset="0.55" stop-color="#ff7ec0"/>
+      <stop offset="1" stop-color="#ff1e9c"/>
+    </linearGradient>
+    <radialGradient id="gloss2" cx="0.5" cy="0.32" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crown2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ffd6ec"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bubblegum)"/>
+  <rect width="800" height="1000" fill="url(#gloss2)"/>
+
+  <!-- hearts + bubbles -->
+  <circle cx="120" cy="180" r="46" fill="#ffffff" opacity="0.4"/>
+  <circle cx="105" cy="165" r="14" fill="#ffffff" opacity="0.85"/>
+  <circle cx="690" cy="760" r="70" fill="#ffffff" opacity="0.28"/>
+  <circle cx="665" cy="735" r="20" fill="#ffffff" opacity="0.75"/>
+  <path d="M700 220 q-26 -34 -52 0 q-26 34 52 64 q78 -30 52 -64 q-26 -34 -52 0 z" fill="#ffffff" opacity="0.5"/>
+
+  <!-- cap -->
+  <g transform="translate(0,40)">
+    <path d="M205 560 Q410 582 615 560 Q602 700 410 716 Q218 700 205 560 Z" fill="#c2106e"/>
+    <path d="M205 560 Q410 582 615 560 Q602 612 410 624 Q218 612 205 560 Z" fill="#ff3aa3"/>
+    <path d="M222 562 C222 360 322 296 410 296 C498 296 600 360 600 562 Z" fill="url(#crown2)" stroke="#c2106e" stroke-width="6"/>
+    <path d="M410 300 L410 560" stroke="#ffc2e2" stroke-width="4"/>
+    <path d="M318 320 Q330 460 350 560" stroke="#ffc2e2" stroke-width="3" fill="none"/>
+    <path d="M502 320 Q470 460 470 560" stroke="#ffc2e2" stroke-width="3" fill="none"/>
+    <circle cx="410" cy="300" r="14" fill="#ff3aa3" stroke="#c2106e" stroke-width="4"/>
+    <circle cx="372" cy="360" r="6" fill="#f3a6cf"/>
+    <circle cx="448" cy="360" r="6" fill="#f3a6cf"/>
+    <ellipse cx="360" cy="380" rx="120" ry="70" fill="#ffffff" opacity="0.5"/>
+    <text x="410" y="500" text-anchor="middle"
+      font-family="'Comic Sans MS','Comic Sans',cursive"
+      font-size="88" font-weight="700"
+      fill="#ff1e9c" stroke="#ffffff" stroke-width="9"
+      paint-order="stroke" transform="rotate(-4 410 480)">Tuff Grl</text>
+  </g>
+
+  <!-- sticker heart -->
+  <path d="M150 740 q-30 -40 -60 0 q-30 40 60 74 q90 -34 60 -74 q-30 -40 -60 0 z" fill="#fff200" stroke="#c2106e" stroke-width="4"/>
+</svg>

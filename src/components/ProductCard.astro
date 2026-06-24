@@ -10,67 +10,83 @@ const { product } = Astro.props;
 
 const statusLabel: Record<Product["status"], string> = {
   preorder: "Pre-order",
-  available: "Available",
-  soldout: "Sold out",
-  "coming-soon": "Coming soon",
+  available: "In Stock",
+  soldout: "Sold Out",
+  "coming-soon": "Soon™",
 };
+const statusClass =
+  product.status === "preorder" ? "preorder" : product.status === "soldout" ? "soldout" : "";
 ---
 
-<a href={url(`/product/${product.slug}`)} class="card">
-  <div class="img">
-    <img src={url(product.images[0])} alt={product.name} loading="lazy" />
-    <span class={`tag ${product.status === "preorder" ? "preorder" : product.status === "soldout" ? "soldout" : ""}`}>
-      {statusLabel[product.status]}
-    </span>
+<a href={url(`/product/${product.slug}`)} class="card window aero">
+  <div class="title-bar">
+    <span class="title-bar-text comic">{product.name}</span>
+    <div class="title-bar-controls">
+      <button aria-label="Open" tabindex="-1">□</button>
+    </div>
   </div>
-  <div class="meta">
-    <h3>{product.name}</h3>
-    <p class="blurb">{product.blurb}</p>
-    <span class="price">{product.price}</span>
+  <div class="window-body">
+    <div class="thumb">
+      <img src={url(product.images[0])} alt={product.name} loading="lazy" />
+      <span class={`tag ${statusClass}`}>{statusLabel[product.status]}</span>
+    </div>
+    <p class="blurb comic">{product.blurb}</p>
+    <div class="row">
+      <span class="price comic">{product.price}</span>
+      <span class="btn-aero hot open">OPEN ►</span>
+    </div>
   </div>
-</a>
 
-<style>
-  .card {
-    display: block;
-    border: 1px solid var(--line);
-    transition: border-color 0.15s ease;
-  }
-  .card:hover {
-    border-color: var(--accent);
-  }
-  .img {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: #111;
-  }
-  .img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .img .tag {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    background: rgba(10, 10, 10, 0.8);
-  }
-  .meta {
-    padding: 1rem;
-  }
-  .meta h3 {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-  }
-  .blurb {
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 0.75rem;
-  }
-  .price {
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
-</style>
+  <style>
+    .card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.12s ease, filter 0.12s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px) rotate(-0.5deg);
+      filter: brightness(1.03);
+    }
+    .thumb {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: inset 0 2px 8px rgba(0, 60, 120, 0.25);
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .thumb .tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+    }
+    .blurb {
+      margin: 12px 2px 14px;
+      font-size: 0.95rem;
+      color: #06346b;
+      min-height: 2.4em;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .price {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-shadow: 2px 2px 0 #fff, 3px 3px 0 var(--hotpink);
+    }
+    .open {
+      font-size: 13px;
+      padding: 9px 16px;
+    }
+  </style>
+</a>

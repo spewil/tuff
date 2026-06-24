@@ -1,0 +1,31 @@
+---
+interface Props {
+  title?: string;
+  skin?: "win95" | "aero" | "chrome" | "gold";
+  controls?: boolean;
+  class?: string;
+}
+
+const { title, skin = "win95", controls = true, class: cls = "" } = Astro.props;
+const skinClass = skin === "win95" ? "" : skin;
+---
+
+<section class={`window ${skinClass} ${cls}`.trim()}>
+  {
+    title && (
+      <div class="title-bar">
+        <span class="title-bar-text">{title}</span>
+        {controls && (
+          <div class="title-bar-controls">
+            <button aria-label="Minimize" tabindex="-1">_</button>
+            <button aria-label="Maximize" tabindex="-1">□</button>
+            <button aria-label="Close" tabindex="-1">✕</button>
+          </div>
+        )}
+      </div>
+    )
+  }
+  <div class="window-body">
+    <slot />
+  </div>
+</section>

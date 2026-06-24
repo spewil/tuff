@@ -1,12 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Window from "../../components/Window.astro";
 import { products, getProduct } from "../../data/products";
 import { url } from "../../lib/url";
 
 export function getStaticPaths() {
-  return products.map((product) => ({
-    params: { slug: product.slug },
-  }));
+  return products.map((product) => ({ params: { slug: product.slug } }));
 }
 
 const { slug } = Astro.params;
@@ -15,157 +14,211 @@ const product = getProduct(slug!)!;
 const isPreorder = product.status === "preorder";
 const isSoldOut = product.status === "soldout";
 const buyable = isPreorder || product.status === "available";
-
-const ctaLabel = isPreorder ? "Pre-order" : "Add to cart";
+const ctaLabel = isPreorder ? "PRE-ORDER NOW ►" : "ADD TO CART ►";
 ---
 
 <Layout title={`${product.name} — TUFF`} description={product.blurb}>
   <section class="product wrap">
-    <div class="gallery">
-      {product.images.map((src) => <img src={url(src)} alt={product.name} />)}
-    </div>
+    <a href={url("/") + "#stuff"} class="btn-95 back">◄ BACK TO S'TUFF.exe</a>
 
-    <div class="info">
-      {
-        isPreorder && (
-          <span class="tag preorder">Pre-order</span>
-        )
-      }
-      {isSoldOut && <span class="tag soldout">Sold out</span>}
-
-      <h1>{product.name}</h1>
-      <p class="price">{product.price}</p>
-
-      {
-        isPreorder && product.shipEstimate && (
-          <p class="ship">{product.shipEstimate} · charged today</p>
-        )
-      }
-
-      {
-        buyable && (
-          <div class="sizes" id="sizes">
-            <p class="eyebrow">Select size</p>
-            <div class="size-row">
-              {product.sizes.map((size) => {
-                const available = !size.soldOut && size.stripeLink !== "";
-                return (
-                  <button
-                    class="size-pill"
-                    data-link={size.stripeLink}
-                    disabled={!available}
-                    aria-disabled={!available}
-                  >
-                    {size.label}
-                  </button>
-                );
-              })}
+    <Window title={`ORDER FORM v2.0 — ${product.name}`} skin="win95">
+      <div class="order">
+        <!-- gallery -->
+        <div class="gallery">
+          {product.images.map((src) => (
+            <div class="frame">
+              <img src={url(src)} alt={product.name} />
             </div>
+          ))}
+          <div class="sticker starburst cyan" style="top:-16px;left:-14px;transform:rotate(-12deg);">
+            LTD<br />EDITION
           </div>
-        )
-      }
+        </div>
 
-      {
-        buyable ? (
-          <a id="checkout" class="btn is-disabled" href="#" aria-disabled="true">
-            {ctaLabel}
-          </a>
-        ) : (
-          <span class="btn is-disabled">{isSoldOut ? "Sold out" : "Coming soon"}</span>
-        )
-      }
+        <!-- form -->
+        <div class="form">
+          {isPreorder && <span class="tag preorder">★ PRE-ORDER</span>}
+          {isSoldOut && <span class="tag soldout">SOLD OUT</span>}
 
-      <div class="desc">
-        {product.description.map((para) => <p>{para}</p>)}
+          <h1 class="comic name">{product.name}</h1>
+          <p class="price chrome-text">{product.price}</p>
+
+          {isPreorder && product.shipEstimate && (
+            <p class="ship pixel">▸ {product.shipEstimate} · CARD CHARGED TODAY</p>
+          )}
+
+          {buyable && (
+            <div class="sizes">
+              <p class="eyebrow">Select size:</p>
+              <div class="size-row">
+                {product.sizes.map((size) => {
+                  const available = !size.soldOut && size.stripeLink !== "";
+                  return (
+                    <button
+                      class="size-pill btn-aero"
+                      data-link={size.stripeLink}
+                      disabled={!available}
+                      aria-disabled={!available}
+                    >
+                      {size.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {buyable ? (
+            <a id="checkout" class="btn-aero hot checkout is-disabled" href="#" aria-disabled="true">
+              {ctaLabel}
+            </a>
+          ) : (
+            <span class="btn-aero checkout is-disabled">
+              {isSoldOut ? "SOLD OUT" : "COMING SOON™"}
+            </span>
+          )}
+
+          <p class="secure pixel">🔒 SECURE CHECKOUT VIA STRIPE.dll · NO FUNNY BUSINESS</p>
+
+          <div class="desc memo">
+            {product.description.map((para) => <p>{para}</p>)}
+          </div>
+        </div>
+      </div>
+    </Window>
+
+    <!-- Clippy-style cherub assistant -->
+    <div class="assistant window aero">
+      <div class="title-bar"><span class="title-bar-text">TUFFY — Office Assistant</span></div>
+      <div class="window-body assist-body">
+        <img class="cutout" src={url("/collage/putto.jpg")} alt="" />
+        <p class="comic">
+          It looks like you&rsquo;re trying to <strong>pre-order</strong>! Want me to
+          help you synergize this purchase? <span class="blink">▍</span>
+        </p>
       </div>
     </div>
   </section>
 
   <style>
     .product {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 3rem;
-      padding-top: 3rem;
+      padding-top: 1.5rem;
     }
-    @media (max-width: 760px) {
-      .product {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-    }
-    .gallery img {
-      width: 100%;
-      border: 1px solid var(--line);
+    .back {
       margin-bottom: 1rem;
     }
-    .info {
-      position: sticky;
-      top: 90px;
-      align-self: start;
+    .order {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
     }
-    .info h1 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin: 0.75rem 0 0.5rem;
-      letter-spacing: -0.01em;
+    .gallery {
+      position: relative;
+    }
+    .frame {
+      background: var(--marble);
+      padding: 8px;
+      box-shadow: var(--bevel-in);
+      margin-bottom: 12px;
+    }
+    .frame img {
+      width: 100%;
+      border: 2px solid #2a2f37;
+    }
+    .form .name {
+      font-size: 1.9rem;
+      color: var(--navy);
+      margin: 0.4rem 0 0.2rem;
+      line-height: 1.05;
     }
     .price {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+      font-size: 2.4rem;
+      margin-bottom: 0.4rem;
     }
     .ship {
-      color: var(--accent);
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 1.5rem;
+      color: #b3007a;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
     }
     .sizes {
-      margin: 1.5rem 0;
+      margin: 1.2rem 0;
     }
     .size-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.6rem;
+      gap: 10px;
+      margin-top: 8px;
     }
     .size-pill {
-      min-width: 3rem;
-      padding: 0.7rem 0.9rem;
-      background: transparent;
-      color: var(--fg);
-      border: 1px solid var(--line);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.12s ease;
-    }
-    .size-pill:hover:not([disabled]) {
-      border-color: var(--fg);
+      min-width: 56px;
+      padding: 12px 14px;
     }
     .size-pill[disabled] {
-      color: var(--muted);
+      filter: grayscale(1) brightness(0.9);
       text-decoration: line-through;
       cursor: not-allowed;
-      opacity: 0.5;
+      opacity: 0.55;
     }
     .size-pill.selected {
-      background: var(--fg);
-      color: #000;
-      border-color: var(--fg);
+      outline: 3px solid var(--hotpink);
+      outline-offset: 1px;
     }
-    .btn {
+    .checkout {
+      display: block;
       width: 100%;
+      margin-top: 0.6rem;
+      font-size: 1.1rem;
+      padding: 16px;
+    }
+    .checkout.is-disabled {
+      filter: grayscale(0.7) brightness(0.95);
+      opacity: 0.7;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .secure {
       text-align: center;
-      margin-top: 0.5rem;
+      font-size: 14px;
+      color: #2a6a2a;
+      margin-top: 10px;
     }
     .desc {
-      margin-top: 2.5rem;
-      color: var(--muted);
-      font-size: 0.95rem;
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 2px groove var(--silver-hi);
+      color: #222;
+      font-size: 1.05rem;
+      line-height: 1.5;
     }
     .desc p {
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .assistant {
+      max-width: 360px;
+      margin: 1.5rem 0 0 auto;
+    }
+    .assist-body {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+    .assist-body img {
+      width: 70px;
+    }
+    .assist-body .comic {
+      font-size: 0.95rem;
+      color: #06346b;
+    }
+
+    @media (max-width: 760px) {
+      .order {
+        grid-template-columns: 1fr;
+      }
+      .assistant {
+        margin-right: 0;
+      }
     }
   </style>
 
@@ -178,7 +231,6 @@ const ctaLabel = isPreorder ? "Pre-order" : "Add to cart";
         if (pill.disabled) return;
         pills.forEach((p) => p.classList.remove("selected"));
         pill.classList.add("selected");
-
         const link = pill.dataset.link;
         if (checkout && link) {
           checkout.setAttribute("href", link);

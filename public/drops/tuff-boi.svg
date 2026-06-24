@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bff0ff"/>
+      <stop offset="0.55" stop-color="#3aa7ff"/>
+      <stop offset="1" stop-color="#0066e6"/>
+    </linearGradient>
+    <radialGradient id="gloss" cx="0.5" cy="0.32" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#cfe8ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#sky)"/>
+  <rect width="800" height="1000" fill="url(#gloss)"/>
+
+  <!-- frutiger bubbles -->
+  <circle cx="120" cy="180" r="46" fill="#ffffff" opacity="0.35"/>
+  <circle cx="105" cy="165" r="14" fill="#ffffff" opacity="0.8"/>
+  <circle cx="690" cy="760" r="70" fill="#ffffff" opacity="0.25"/>
+  <circle cx="665" cy="735" r="20" fill="#ffffff" opacity="0.7"/>
+  <circle cx="700" cy="240" r="26" fill="#ffffff" opacity="0.4"/>
+
+  <!-- cap -->
+  <g transform="translate(0,40)">
+    <!-- brim -->
+    <path d="M205 560 Q410 582 615 560 Q602 700 410 716 Q218 700 205 560 Z" fill="#0a3f8c"/>
+    <path d="M205 560 Q410 582 615 560 Q602 612 410 624 Q218 612 205 560 Z" fill="#0f57bd"/>
+    <!-- crown -->
+    <path d="M222 562 C222 360 322 296 410 296 C498 296 600 360 600 562 Z" fill="url(#crown)" stroke="#0a3f8c" stroke-width="6"/>
+    <!-- panel seams -->
+    <path d="M410 300 L410 560" stroke="#bcd9f5" stroke-width="4"/>
+    <path d="M318 320 Q330 460 350 560" stroke="#bcd9f5" stroke-width="3" fill="none"/>
+    <path d="M502 320 Q470 460 470 560" stroke="#bcd9f5" stroke-width="3" fill="none"/>
+    <!-- top button -->
+    <circle cx="410" cy="300" r="14" fill="#0f57bd" stroke="#0a3f8c" stroke-width="4"/>
+    <!-- eyelets -->
+    <circle cx="372" cy="360" r="6" fill="#9cc2ee"/>
+    <circle cx="448" cy="360" r="6" fill="#9cc2ee"/>
+    <!-- gloss on crown -->
+    <ellipse cx="360" cy="380" rx="120" ry="70" fill="#ffffff" opacity="0.45"/>
+    <!-- wordmark -->
+    <text x="410" y="500" text-anchor="middle"
+      font-family="'Comic Sans MS','Comic Sans',cursive"
+      font-size="88" font-weight="700"
+      fill="#0066e6" stroke="#ffffff" stroke-width="9"
+      paint-order="stroke" transform="rotate(-4 410 480)">Tuff Boi</text>
+  </g>
+
+  <!-- sticker sparkle -->
+  <path d="M150 760 l16 44 44 16 -44 16 -16 44 -16 -44 -44 -16 44 -16 z" fill="#fff200" stroke="#0a3f8c" stroke-width="4"/>
+</svg>
