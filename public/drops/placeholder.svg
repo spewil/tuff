@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <rect width="800" height="1000" fill="#111111"/>
+  <text x="400" y="500" fill="#e4ff3a" font-family="Helvetica, Arial, sans-serif" font-size="120" font-weight="800" text-anchor="middle" dominant-baseline="middle" letter-spacing="8">TUFF</text>
+  <text x="400" y="580" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="28" text-anchor="middle" letter-spacing="6">DROP IMAGE</text>
+</svg>

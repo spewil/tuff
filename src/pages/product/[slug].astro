@@ -1,0 +1,190 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { products, getProduct } from "../../data/products";
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const product = getProduct(slug!)!;
+
+const isPreorder = product.status === "preorder";
+const isSoldOut = product.status === "soldout";
+const buyable = isPreorder || product.status === "available";
+
+const ctaLabel = isPreorder ? "Pre-order" : "Add to cart";
+---
+
+<Layout title={`${product.name} — TUFF`} description={product.blurb}>
+  <section class="product wrap">
+    <div class="gallery">
+      {product.images.map((src) => <img src={src} alt={product.name} />)}
+    </div>
+
+    <div class="info">
+      {
+        isPreorder && (
+          <span class="tag preorder">Pre-order</span>
+        )
+      }
+      {isSoldOut && <span class="tag soldout">Sold out</span>}
+
+      <h1>{product.name}</h1>
+      <p class="price">{product.price}</p>
+
+      {
+        isPreorder && product.shipEstimate && (
+          <p class="ship">{product.shipEstimate} · charged today</p>
+        )
+      }
+
+      {
+        buyable && (
+          <div class="sizes" id="sizes">
+            <p class="eyebrow">Select size</p>
+            <div class="size-row">
+              {product.sizes.map((size) => {
+                const available = !size.soldOut && size.stripeLink !== "";
+                return (
+                  <button
+                    class="size-pill"
+                    data-link={size.stripeLink}
+                    disabled={!available}
+                    aria-disabled={!available}
+                  >
+                    {size.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )
+      }
+
+      {
+        buyable ? (
+          <a id="checkout" class="btn is-disabled" href="#" aria-disabled="true">
+            {ctaLabel}
+          </a>
+        ) : (
+          <span class="btn is-disabled">{isSoldOut ? "Sold out" : "Coming soon"}</span>
+        )
+      }
+
+      <div class="desc">
+        {product.description.map((para) => <p>{para}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .product {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      padding-top: 3rem;
+    }
+    @media (max-width: 760px) {
+      .product {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+    .gallery img {
+      width: 100%;
+      border: 1px solid var(--line);
+      margin-bottom: 1rem;
+    }
+    .info {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+    }
+    .info h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0.75rem 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .ship {
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .sizes {
+      margin: 1.5rem 0;
+    }
+    .size-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+    }
+    .size-pill {
+      min-width: 3rem;
+      padding: 0.7rem 0.9rem;
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--line);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+    .size-pill:hover:not([disabled]) {
+      border-color: var(--fg);
+    }
+    .size-pill[disabled] {
+      color: var(--muted);
+      text-decoration: line-through;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    .size-pill.selected {
+      background: var(--fg);
+      color: #000;
+      border-color: var(--fg);
+    }
+    .btn {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+    .desc {
+      margin-top: 2.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .desc p {
+      margin-bottom: 1rem;
+    }
+  </style>
+
+  <script>
+    const pills = document.querySelectorAll<HTMLButtonElement>(".size-pill");
+    const checkout = document.getElementById("checkout") as HTMLAnchorElement | null;
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        if (pill.disabled) return;
+        pills.forEach((p) => p.classList.remove("selected"));
+        pill.classList.add("selected");
+
+        const link = pill.dataset.link;
+        if (checkout && link) {
+          checkout.setAttribute("href", link);
+          checkout.classList.remove("is-disabled");
+          checkout.setAttribute("aria-disabled", "false");
+        }
+      });
+    });
+  </script>
+</Layout>

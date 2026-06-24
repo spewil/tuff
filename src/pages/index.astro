@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products } from "../data/products";
+---
+
+<Layout>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Limited edition apparel</p>
+      <h1>BUILT<br />TUFF.</h1>
+      <p class="lede">
+        Small-batch drops. Made in limited numbers. Never restocked.
+      </p>
+      <a href="#drops" class="btn">Shop the drop</a>
+    </div>
+  </section>
+
+  <section id="drops" class="drops">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Current drops</h2>
+        <span class="eyebrow">{products.length} live</span>
+      </div>
+      <div class="grid">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      padding: 7rem 0 5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero h1 {
+      font-size: clamp(3.5rem, 14vw, 9rem);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin: 1rem 0 1.5rem;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 32ch;
+      margin-bottom: 2rem;
+    }
+    .drops {
+      padding: 4rem 0;
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .section-head h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+  </style>
+</Layout>
