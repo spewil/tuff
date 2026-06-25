@@ -7,37 +7,37 @@ import { url } from "../lib/url";
 
 <Layout title="Shop — TUFF">
   <section class="feed">
-    <img class="cherub float sticker" style="--rot:-6deg; top:4%; left:6%; width:120px;" src={url("/collage/putto.jpg")} alt="" />
-    <span class="orb float sticker" style="top:30%; right:7%; width:70px;"></span>
-    <span class="starburst lime sticker tilt-l" style="top:48%; left:4%;">only<br />a few</span>
-    <img class="cherub float sticker" style="--rot:5deg; bottom:10%; right:5%; width:140px;" src={url("/collage/angel.jpg")} alt="" />
-    <span class="sparkle pink sticker" style="top:14%; right:14%; font-size:46px;"></span>
-    <span class="sparkle sticker" style="bottom:24%; left:12%; font-size:38px;"></span>
+    <!-- schizo sprite layer: chrome / gel / pixel / doodle -->
+    <img class="sticker float" style="top:4%; left:5%; width:clamp(60px,8vw,116px);" src={url("/stickers/chrome-star.svg")} alt="" />
+    <img class="sticker float slow" style="top:30%; right:5%; width:clamp(54px,7vw,100px);" src={url("/stickers/pixel-heart.svg")} alt="" />
+    <img class="sticker float" style="top:58%; left:4%; width:clamp(58px,8vw,112px); transform:rotate(-10deg);" src={url("/stickers/doodle-star.svg")} alt="" />
+    <img class="sticker float slow" style="bottom:11%; right:6%; width:clamp(66px,9vw,132px);" src={url("/stickers/chrome-blob.svg")} alt="" />
+    <img class="sticker float" style="top:80%; right:9%; width:clamp(52px,7vw,98px);" src={url("/stickers/gel-star.svg")} alt="" />
+    <span class="sparkle lime sticker" style="top:44%; right:9%; font-size:28px;"></span>
+    <span class="sparkle magenta sticker" style="top:18%; left:14%; font-size:24px;"></span>
 
     {products.map((product, i) => <ShopItem product={product} index={i} />)}
 
-    <div class="tail">
-      <a href={url("/")} class="minilink">&larr; home</a>
-      <span class="sparkle cyan" style="font-size:22px;"></span>
-      <a href={url("/factory")} class="minilink">factory &rarr;</a>
+    <div class="tail wrap">
+      <hr class="divider" />
+      <div class="tail-links">
+        <a href={url("/")} class="minilink">&larr; home</a>
+        <span class="sparkle cyan" style="font-size:22px;"></span>
+        <a href={url("/factory")} class="minilink">factory &rarr;</a>
+      </div>
     </div>
   </section>
 
   <style>
-    .feed {
-      position: relative;
-      padding: clamp(2rem, 6vw, 4rem) 0;
-      overflow: hidden;
-    }
-    .tail {
+    .feed { position: relative; padding: clamp(2rem, 6vw, 4rem) 0 0; overflow: hidden; }
+    .tail { margin-top: 2rem; }
+    .tail-links {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      padding: 3rem 0 1rem;
+      padding: 1.6rem 0;
     }
-    @media (max-width: 760px) {
-      .feed .sticker { display: none; }
-    }
+    @media (max-width: 760px) { .feed .sticker { display: none; } }
   </style>
 </Layout>

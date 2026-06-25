@@ -5,21 +5,21 @@ import { url } from "../lib/url";
 
 <Layout>
   <section class="hero">
-    <!-- weird floating layer -->
-    <img class="cherub float sticker" style="--rot:6deg; top:8%; right:8%; width:clamp(120px,18vw,230px);" src={url("/collage/putto.jpg")} alt="" />
-    <img class="cherub float sticker" style="--rot:-7deg; bottom:6%; left:4%; width:clamp(90px,12vw,160px);" src={url("/collage/venus.jpg")} alt="" />
-    <span class="orb float sticker" style="top:20%; left:10%; width:84px;"></span>
-    <span class="orb float sticker" style="bottom:22%; right:16%; width:54px;"></span>
-    <span class="starburst sticker tilt-r" style="top:12%; left:6%;">new<br />s'tuff</span>
-    <span class="sparkle pink sticker" style="top:64%; left:24%; font-size:54px;"></span>
-    <span class="sparkle cyan sticker" style="top:30%; right:28%; font-size:34px;"></span>
+    <!-- schizo sprite layer: chrome / gel / pixel / doodle -->
+    <img class="sticker float"      style="top:12%; left:7%;  width:clamp(78px,11vw,168px);" src={url("/stickers/chrome-blob.svg")} alt="" />
+    <img class="sticker float slow" style="bottom:13%; right:8%; width:clamp(66px,9vw,134px);" src={url("/stickers/chrome-star.svg")} alt="" />
+    <img class="sticker float slow" style="top:16%; right:11%; width:clamp(52px,7vw,96px);"  src={url("/stickers/pixel-heart.svg")} alt="" />
+    <img class="sticker float"      style="bottom:18%; left:11%; width:clamp(60px,8vw,116px);" src={url("/stickers/gel-star.svg")} alt="" />
+    <img class="sticker"            style="top:52%; left:3%;   width:clamp(58px,8vw,112px); transform:rotate(-12deg);" src={url("/stickers/doodle-star.svg")} alt="" />
+    <span class="sparkle lime sticker" style="top:30%; right:24%; font-size:28px;"></span>
+    <span class="sparkle magenta sticker" style="bottom:30%; right:20%; font-size:24px;"></span>
 
     <div class="hero-core">
-      <p class="eyebrow">Limited apparel</p>
+      <p class="eyebrow">★ limited apparel ★</p>
       <h1 class="chrome-text title">TUFF</h1>
+      <p class="comic sub">tuff boi &amp; tuff grl 4 lyfe!!</p>
       <div class="hero-links">
-        <a href={url("/shop")} class="btn btn--hot">Shop &rarr;</a>
-        <a href={url("/factory")} class="minilink">or see the factory</a>
+        <a href={url("/shop")} class="btn btn--hot">Enter shop &rarr;</a>
       </div>
     </div>
   </section>
@@ -27,26 +27,22 @@ import { url } from "../lib/url";
   <style>
     .hero {
       position: relative;
-      min-height: 92vh;
+      min-height: 94vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: var(--pad);
       overflow: hidden;
     }
-    .hero-core { position: relative; z-index: 2; text-align: center; }
-    .title {
-      font-size: clamp(5rem, 22vw, 16rem);
-      margin: 0.1em 0 0.5em;
+    .hero-core { position: relative; z-index: 4; text-align: center; }
+    .eyebrow { margin-bottom: 0.6rem; }
+    .title { font-size: clamp(5rem, 24vw, 18rem); margin: 0.05em 0 0.2em; }
+    .sub {
+      font-size: clamp(1.1rem, 2.6vw, 1.7rem);
+      color: var(--magenta);
+      text-shadow: 1.5px 1.5px 0 #fff;
+      margin-bottom: 1.6rem;
     }
-    .hero-links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      .hero .sticker { opacity: 0.85; }
-    }
+    .hero-links { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
   </style>
 </Layout>

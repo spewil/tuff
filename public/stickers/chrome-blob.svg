@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <linearGradient id="cb" x1="0" y1="0" x2="0.15" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.12" stop-color="#e2edf4"/>
+      <stop offset="0.33" stop-color="#9aabb8"/>
+      <stop offset="0.46" stop-color="#46535d"/>
+      <stop offset="0.5" stop-color="#161c22"/>
+      <stop offset="0.55" stop-color="#3c4a54"/>
+      <stop offset="0.7" stop-color="#9fb1bd"/>
+      <stop offset="0.86" stop-color="#eef5fb"/>
+      <stop offset="1" stop-color="#c2cfd9"/>
+    </linearGradient>
+    <radialGradient id="tintP" cx="0.3" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#ff7ad0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff7ad0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tintC" cx="0.74" cy="0.82" r="0.55">
+      <stop offset="0" stop-color="#36e6ff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#36e6ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="9" flood-color="#ff1e9c" flood-opacity="0.5"/>
+    </filter>
+    <clipPath id="blobclip">
+      <path d="M122,18 C182,14 224,56 222,114 C220,170 178,210 118,209 C64,208 20,172 20,116 C20,56 66,22 122,18 Z"/>
+    </clipPath>
+  </defs>
+
+  <path d="M122,18 C182,14 224,56 222,114 C220,170 178,210 118,209 C64,208 20,172 20,116 C20,56 66,22 122,18 Z"
+    fill="url(#cb)" stroke="#0a0e12" stroke-width="2.5" filter="url(#glow)"/>
+
+  <g clip-path="url(#blobclip)">
+    <rect x="0" y="0" width="240" height="240" fill="url(#tintP)"/>
+    <rect x="0" y="0" width="240" height="240" fill="url(#tintC)"/>
+    <!-- horizon streak -->
+    <rect x="0" y="112" width="240" height="10" fill="#05080c" opacity="0.5"/>
+    <!-- big specular -->
+    <ellipse cx="84" cy="60" rx="46" ry="24" fill="#ffffff" opacity="0.9" transform="rotate(-20 84 60)"/>
+    <ellipse cx="70" cy="50" rx="16" ry="9" fill="#ffffff" transform="rotate(-20 70 50)"/>
+    <!-- lower bounce light -->
+    <ellipse cx="150" cy="168" rx="34" ry="13" fill="#ffffff" opacity="0.55" transform="rotate(-12 150 168)"/>
+    <!-- rim light top -->
+    <path d="M60,30 C90,18 150,16 188,40" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.65"/>
+  </g>
+</svg>

@@ -11,6 +11,9 @@ const {
   title = "TUFF",
   description = "Limited edition apparel, made in small numbers.",
 } = Astro.props;
+
+const hype =
+  "✦ TUFF BOI 4 LYFE ✦ LIMITED ✦ MADE 2 ORDER ✦ NO RESTOCKS ✦ TUFF GRL ✦ SOLD OUT SOON ✦ STAY TUFF ✦ ";
 ---
 
 <!doctype html>
@@ -24,14 +27,110 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bungee&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Chakra+Petch:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-base={import.meta.env.BASE_URL}>
     <main>
       <slot />
     </main>
+
+    <div class="marquee ticker" aria-hidden="true">
+      <div class="marquee__track">
+        <span>{hype}{hype}</span>
+        <span>{hype}{hype}</span>
+      </div>
+    </div>
+
+    <div class="fx-layer" id="fx" aria-hidden="true"></div>
+
+    <style>
+      .ticker { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; }
+      main { padding-bottom: 58px; }
+    </style>
+
+    <script is:inline>
+      (function () {
+        var base = document.body.dataset.base || "/";
+        var SPRITES = ["chrome-blob", "chrome-star", "gel-star", "pixel-heart", "doodle-star"];
+        var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var fine = matchMedia("(pointer: fine)").matches;
+
+        // cursor sparkle trail
+        if (fine && !reduce) {
+          var colors = ["var(--lime)", "var(--cyan)", "var(--magenta)"];
+          var lastT = 0;
+          window.addEventListener(
+            "pointermove",
+            function (e) {
+              var now = performance.now();
+              if (now - lastT < 45) return;
+              lastT = now;
+              var b = document.createElement("span");
+              b.className = "trail-bit sparkle";
+              var sz = 8 + Math.random() * 13;
+              b.style.width = sz + "px";
+              b.style.height = sz + "px";
+              b.style.left = e.clientX + "px";
+              b.style.top = e.clientY + "px";
+              b.style.background = colors[(Math.random() * colors.length) | 0];
+              document.body.appendChild(b);
+              setTimeout(function () {
+                b.remove();
+              }, 700);
+            },
+            { passive: true }
+          );
+        }
+
+        // click to spawn a bouncing sprite
+        if (!reduce) {
+          var spawns = [];
+          document.addEventListener("click", function (e) {
+            if (e.target.closest("a,button,input,select,textarea,.splash")) return;
+            var img = document.createElement("img");
+            img.className = "spawn-bit";
+            img.src = base + "stickers/" + SPRITES[(Math.random() * SPRITES.length) | 0] + ".svg";
+            img.alt = "";
+            var s = 42 + Math.random() * 48;
+            img.style.width = s + "px";
+            img.style.left = e.pageX + "px";
+            img.style.top = e.pageY + "px";
+            img.style.setProperty("--r", (Math.random() * 40 - 20).toFixed(1) + "deg");
+            document.body.appendChild(img);
+            spawns.push(img);
+            if (spawns.length > 22) {
+              var old = spawns.shift();
+              old.classList.add("pop-out");
+              setTimeout(function () {
+                old.remove();
+              }, 420);
+            }
+          });
+        }
+
+        // product hover tilt
+        if (fine && !reduce) {
+          document.querySelectorAll("[data-tilt]").forEach(function (el) {
+            el.addEventListener("pointermove", function (e) {
+              var r = el.getBoundingClientRect();
+              var px = (e.clientX - r.left) / r.width - 0.5;
+              var py = (e.clientY - r.top) / r.height - 0.5;
+              el.style.transform =
+                "perspective(720px) rotateY(" +
+                (px * 13).toFixed(2) +
+                "deg) rotateX(" +
+                (-py * 13).toFixed(2) +
+                "deg) scale(1.04)";
+            });
+            el.addEventListener("pointerleave", function () {
+              el.style.transform = "";
+            });
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

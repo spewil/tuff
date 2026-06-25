@@ -7,9 +7,11 @@ const photos = ["The floor", "Quality control", "Embroidery", "Lunch"];
 
 <Layout title="Factory — TUFF">
   <section class="f-hero wrap">
-    <img class="cherub float" style="--rot:-4deg" src={url("/collage/angel.jpg")} alt="" />
-    <div>
-      <p class="eyebrow">Made in China · with people we know</p>
+    <img class="sticker float" style="top:8%; left:5%; width:clamp(64px,8vw,120px);" src={url("/stickers/chrome-blob.svg")} alt="" />
+    <img class="sticker float slow" style="bottom:10%; right:5%; width:clamp(60px,8vw,116px);" src={url("/stickers/chrome-star.svg")} alt="" />
+    <span class="sparkle lime sticker" style="top:22%; right:14%; font-size:30px;"></span>
+    <div class="f-head">
+      <p class="eyebrow">// made in China &mdash; with people we know</p>
       <h1 class="chrome-text">FACTORY</h1>
     </div>
   </section>
@@ -18,7 +20,7 @@ const photos = ["The floor", "Quality control", "Embroidery", "Lunch"];
     {photos.map((caption) => (
       <figure class="pending">
         <div class="media box"><span>Coming soon</span></div>
-        <figcaption class="serif italic">{caption}</figcaption>
+        <figcaption class="mono cap">{caption}</figcaption>
       </figure>
     ))}
   </section>
@@ -32,14 +34,16 @@ const photos = ["The floor", "Quality control", "Embroidery", "Lunch"];
 
 <style>
   .f-hero {
-    display: flex;
-    align-items: center;
-    gap: clamp(1.5rem, 5vw, 3rem);
-    min-height: 50vh;
-    flex-wrap: wrap;
+    position: relative;
+    min-height: 58vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
   }
-  .f-hero img { width: clamp(160px, 28vw, 280px); }
-  .f-hero h1 { font-size: clamp(2.8rem, 12vw, 8rem); }
+  .f-head { position: relative; z-index: 2; }
+  .f-hero .eyebrow { margin-bottom: 0.4rem; }
+  .f-hero h1 { font-size: clamp(2.8rem, 14vw, 8rem); }
 
   .photos {
     display: grid;
@@ -57,10 +61,12 @@ const photos = ["The floor", "Quality control", "Embroidery", "Lunch"];
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-  .pending figcaption {
-    font-style: italic;
+  .pending .cap {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: var(--ink-soft);
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
   }
   .tail {
     display: flex;

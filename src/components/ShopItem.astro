@@ -17,7 +17,7 @@ const tilt = index % 2 === 0 ? "tilt-l" : "tilt-r";
   class={`item ${soldout ? "is-soldout" : ""}`}
   aria-label={product.name}
 >
-  <figure class={`media ${tilt}`}>
+  <figure class={`media ${tilt}`} data-tilt>
     <img src={url(product.images[0])} alt={product.name} loading="lazy" />
     {soldout && <span class="soldout-banner">Sold out</span>}
   </figure>

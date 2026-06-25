@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <defs>
+    <linearGradient id="cs" x1="0" y1="0" x2="0.1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.2" stop-color="#dce6ee"/>
+      <stop offset="0.44" stop-color="#7a8a97"/>
+      <stop offset="0.5" stop-color="#1d242b"/>
+      <stop offset="0.56" stop-color="#5d6b76"/>
+      <stop offset="0.78" stop-color="#cdd9e2"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <radialGradient id="csTint" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#9ff3ff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#9ff3ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="csg" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00e9ff" flood-opacity="0.6"/>
+    </filter>
+    <clipPath id="starclip">
+      <path d="M110,8 Q123,97 212,110 Q123,123 110,212 Q97,123 8,110 Q97,97 110,8 Z"/>
+    </clipPath>
+  </defs>
+  <path d="M110,8 Q123,97 212,110 Q123,123 110,212 Q97,123 8,110 Q97,97 110,8 Z"
+    fill="url(#cs)" stroke="#0a0e12" stroke-width="2.5" filter="url(#csg)"/>
+  <g clip-path="url(#starclip)">
+    <rect x="0" y="0" width="220" height="220" fill="url(#csTint)"/>
+    <rect x="0" y="104" width="220" height="8" fill="#05080c" opacity="0.45"/>
+    <ellipse cx="92" cy="74" rx="20" ry="11" fill="#ffffff" opacity="0.85" transform="rotate(-28 92 74)"/>
+  </g>
+  <circle cx="110" cy="110" r="6" fill="#ffffff"/>
+  <circle cx="110" cy="110" r="13" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.5"/>
+</svg>

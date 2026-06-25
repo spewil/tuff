@@ -33,7 +33,7 @@ const statusClass = isPreorder ? "preorder" : soldout ? "soldout" : "soon";
     <div class="cols">
       <div class={`gallery ${soldout ? "is-soldout" : ""}`}>
         {product.images.map((src) => (
-          <figure class="media">
+          <figure class="media" data-tilt>
             <img src={url(src)} alt={product.name} />
             {soldout && <span class="soldout-banner">Sold out</span>}
           </figure>
@@ -43,10 +43,10 @@ const statusClass = isPreorder ? "preorder" : soldout ? "soldout" : "soon";
       <div class="info">
         <span class={`tag ${statusClass}`}>{statusText[product.status]}</span>
         <h1 class="name">{product.name}</h1>
-        <p class="price serif">{product.price}</p>
+        <p class="price mono">{product.price}</p>
 
         {isPreorder && product.shipEstimate && (
-          <p class="ship serif italic">{product.shipEstimate} · charged today</p>
+          <p class="ship mono">{product.shipEstimate} · charged today</p>
         )}
 
         {buyable && (
@@ -68,7 +68,7 @@ const statusClass = isPreorder ? "preorder" : soldout ? "soldout" : "soon";
         {buyable ? (
           <a id="checkout" class="btn buy is-disabled" href="#" aria-disabled="true">{ctaLabel}</a>
         ) : (
-          <p class="unavailable serif italic">
+          <p class="unavailable mono">
             {soldout ? "This piece is sold out. It will not be made again." : "Not out yet. Soon."}
           </p>
         )}
@@ -102,16 +102,16 @@ const statusClass = isPreorder ? "preorder" : soldout ? "soldout" : "soon";
       margin: 0 0 1rem;
       aspect-ratio: 4 / 5;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.4);
+      background: #0c0f13;
     }
     .media img { width: 100%; height: 100%; object-fit: cover; }
-    .gallery.is-soldout .media img { filter: grayscale(1) contrast(0.92) opacity(0.7); }
+    .gallery.is-soldout .media img { filter: grayscale(1) brightness(0.55); }
 
-    .info { position: sticky; top: 96px; }
+    .info { position: sticky; top: 40px; }
     .info .tag { margin-bottom: 1rem; }
-    .name { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 0.4rem; }
-    .price { font-size: 1.8rem; margin-bottom: 0.4rem; }
-    .ship { color: var(--aqua); margin-bottom: 1.5rem; }
+    .name { font-size: clamp(2.2rem, 6vw, 3.6rem); margin-bottom: 0.5rem; }
+    .price { font-family: var(--mono); font-weight: 700; font-size: 1.8rem; margin-bottom: 0.4rem; color: var(--cyan); }
+    .ship { color: var(--lime); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
     .sizes { margin: 1.5rem 0; }
     .size-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; }
@@ -127,14 +127,14 @@ const statusClass = isPreorder ? "preorder" : soldout ? "soldout" : "soon";
       cursor: pointer;
       transition: background 0.15s ease, color 0.15s ease;
     }
-    .size:hover:not([disabled]) { background: var(--ink); color: #fff; }
+    .size:hover:not([disabled]) { background: var(--lime); color: #000; border-color: var(--lime); }
     .size[disabled] {
       border-color: var(--line);
       color: var(--ink-soft);
       text-decoration: line-through;
       cursor: not-allowed;
     }
-    .size.selected { background: var(--aqua); color: #fff; border-color: var(--aqua); }
+    .size.selected { background: var(--lime); color: #000; border-color: var(--lime); }
 
     .buy { width: 100%; justify-content: center; padding: 1.1em; margin-top: 0.5rem; }
     .unavailable { font-size: 1.2rem; color: var(--ink-soft); margin: 1.5rem 0; }
