@@ -1,0 +1,43 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ShopItem from "../components/ShopItem.astro";
+import { products } from "../data/products";
+import { url } from "../lib/url";
+---
+
+<Layout title="Shop — TUFF">
+  <section class="feed">
+    <img class="cherub float sticker" style="--rot:-6deg; top:4%; left:6%; width:120px;" src={url("/collage/putto.jpg")} alt="" />
+    <span class="orb float sticker" style="top:30%; right:7%; width:70px;"></span>
+    <span class="starburst lime sticker tilt-l" style="top:48%; left:4%;">only<br />a few</span>
+    <img class="cherub float sticker" style="--rot:5deg; bottom:10%; right:5%; width:140px;" src={url("/collage/angel.jpg")} alt="" />
+    <span class="sparkle pink sticker" style="top:14%; right:14%; font-size:46px;"></span>
+    <span class="sparkle sticker" style="bottom:24%; left:12%; font-size:38px;"></span>
+
+    {products.map((product, i) => <ShopItem product={product} index={i} />)}
+
+    <div class="tail">
+      <a href={url("/")} class="minilink">&larr; home</a>
+      <span class="sparkle cyan" style="font-size:22px;"></span>
+      <a href={url("/factory")} class="minilink">factory &rarr;</a>
+    </div>
+  </section>
+
+  <style>
+    .feed {
+      position: relative;
+      padding: clamp(2rem, 6vw, 4rem) 0;
+      overflow: hidden;
+    }
+    .tail {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 3rem 0 1rem;
+    }
+    @media (max-width: 760px) {
+      .feed .sticker { display: none; }
+    }
+  </style>
+</Layout>

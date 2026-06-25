@@ -1,196 +1,72 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Window from "../components/Window.astro";
 import { url } from "../lib/url";
 
-const photos = [
-  "On the floor with the team",
-  "Brim quality control",
-  "The embroidery dept.",
-  "Lunch (synergy)",
-];
+const photos = ["The floor", "Quality control", "Embroidery", "Lunch"];
 ---
 
-<Layout title="The Tuff Factory — TUFF INDUSTRIES™" description="Where TUFF gets made — our partner factory in China and the skilled artisans behind every piece.">
-  <section class="factory wrap">
-    <a href={url("/")} class="btn-95 back">◄ BACK TO DESKTOP</a>
-
-    <!-- ===================== HERO ===================== -->
-    <header class="f-hero">
-      <p class="eyebrow blink">◆ TUFF INDUSTRIES — VERTICALLY INTEGRATED TUFFNESS ◆</p>
-      <h1 class="chrome-text">THE TUFF FACTORY</h1>
-      <p class="comic tagline">where the magic gets manufactured™</p>
-    </header>
-
-    <!-- ===================== STORY ===================== -->
-    <Window title="MANUFACTURING.doc — Notepad" skin="win95">
-      <div class="story memo">
-        <p>
-          Every TUFF piece is made at our partner factory in <strong>China</strong>,
-          where we work hand-in-hand with <strong>skilled artisans</strong> who have
-          spent years — in some cases decades — perfecting the craft of headwear.
-        </p>
-        <p>
-          These are the people who actually make the s'tuff. The embroiderers who lay
-          down each Comic Sans stitch. The cutters and sewers who build a brim that
-          holds its shape. The folks running quality control on every single cap before
-          it ships. We're proud of them, and we don't outsource the storytelling: we go,
-          we visit, we learn their names.
-        </p>
-        <p>
-          We believe great product comes from treating the people who make it well and
-          paying for real craftsmanship instead of cutting corners. (Per our mission
-          statement: zero corners cut. It is mission-critical.)
-        </p>
-        <p class="comic note">
-          📌 Photos from our most recent site visit are being uploaded from the road.
-          Check back soon — the cherubs are still importing them.
-        </p>
-      </div>
-    </Window>
-
-    <!-- ===================== PHOTO GALLERY (placeholders) ===================== -->
-    <Window title="C:\TUFF\SITE_VISIT_2026\ — 0 of 4 files loaded" skin="chrome" class="gallery-win">
-      <div class="gallery">
-        {photos.map((caption) => (
-          <div class="photo pending">
-            <span class="tape" style="top:-11px;left:24px;transform:rotate(-6deg);"></span>
-            <div class="pending-box">
-              <span class="cam">📷</span>
-              <span class="pixel">PHOTO PENDING</span>
-              <span class="bar"><span class="bar-fill"></span></span>
-            </div>
-            <span class="caption">{caption}</span>
-          </div>
-        ))}
-      </div>
-    </Window>
-
-    <!-- ===================== QA + STATS ===================== -->
-    <div class="f-grid">
-      <Window title="QUALITY ASSURANCE.doc" skin="gold">
-        <h3 class="gold-text" style="font-size:1.6rem;margin-bottom:0.5rem;">Re: Craftsmanship</h3>
-        <p class="memo">
-          Our artisans hand-finish every cap. Each piece is inspected, loved, and
-          released into the world only when it is sufficiently tuff. We consider this
-          best-in-class. The Renaissance masters would concur.
-        </p>
-      </Window>
-
-      <Window title="METRICS.xls" skin="aero" class="stats-win">
-        <ul class="stats">
-          <li><span class="num chrome-text">100%</span> hand-finished</li>
-          <li><span class="num chrome-text">0</span> corners cut</li>
-          <li><span class="num chrome-text">∞</span> synergy</li>
-          <li><span class="num chrome-text">1</span> factory, real people</li>
-        </ul>
-      </Window>
-    </div>
-
-    <div class="sticker starburst lime hide-mobile" style="position:relative;margin:1.5rem auto 0;transform:rotate(-6deg);">
-      MADE BY<br />HUMANS
+<Layout title="Factory — TUFF">
+  <section class="f-hero wrap">
+    <img class="cherub float" style="--rot:-4deg" src={url("/collage/angel.jpg")} alt="" />
+    <div>
+      <p class="eyebrow">Made in China · with people we know</p>
+      <h1 class="chrome-text">FACTORY</h1>
     </div>
   </section>
 
-  <style>
-    .factory {
-      padding-top: 1.5rem;
-    }
-    .back {
-      margin-bottom: 1.4rem;
-    }
-    .f-hero {
-      text-align: center;
-      margin-bottom: 1.8rem;
-    }
-    .f-hero h1 {
-      font-size: clamp(2.8rem, 9vw, 6rem);
-      line-height: 0.9;
-      margin: 0.3rem 0;
-    }
-    .f-hero .tagline {
-      font-size: clamp(1.1rem, 3vw, 1.8rem);
-      color: var(--navy);
-      text-shadow: 2px 2px 0 #fff;
-    }
-    .story {
-      font-size: 1.08rem;
-      line-height: 1.6;
-      color: #1a1a1a;
-      max-width: 70ch;
-    }
-    .story p { margin-bottom: 0.9rem; }
-    .story .note {
-      background: #fffbcc;
-      border: 1px dashed #b8a400;
-      padding: 8px 12px;
-      color: #5a4a00;
-      font-size: 1rem;
-    }
+  <section class="photos wrap">
+    {photos.map((caption) => (
+      <figure class="pending">
+        <div class="media box"><span>Coming soon</span></div>
+        <figcaption class="serif italic">{caption}</figcaption>
+      </figure>
+    ))}
+  </section>
 
-    .gallery-win { margin-top: 1.6rem; }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.4rem;
-    }
-    .pending { transform: rotate(-1.5deg); }
-    .pending:nth-child(even) { transform: rotate(1.5deg); }
-    .pending-box {
-      aspect-ratio: 4 / 3;
-      display: grid;
-      place-content: center;
-      justify-items: center;
-      gap: 8px;
-      background:
-        repeating-linear-gradient(45deg, #e9edf1 0 12px, #dfe4ea 12px 24px);
-      box-shadow: var(--bevel-in);
-      color: #5a6675;
-    }
-    .pending-box .cam { font-size: 2.4rem; }
-    .pending-box .pixel { font-size: 16px; letter-spacing: 0.08em; }
-    .pending-box .bar {
-      width: 70%;
-      height: 12px;
-      background: #fff;
-      box-shadow: var(--bevel-in);
-      overflow: hidden;
-    }
-    .pending-box .bar-fill {
-      display: block;
-      height: 100%;
-      width: 38%;
-      background: repeating-linear-gradient(90deg, #1084d0 0 8px, #0a5fa0 8px 16px);
-    }
-
-    .f-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap: 1.6rem;
-      margin-top: 1.6rem;
-      align-items: start;
-    }
-    .f-grid .memo { font-size: 1.05rem; line-height: 1.55; color: #3a2e0a; }
-    .stats {
-      list-style: none;
-      display: grid;
-      gap: 14px;
-    }
-    .stats li {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      font-weight: 700;
-      color: #06346b;
-      font-size: 1.1rem;
-    }
-    .stats .num {
-      font-size: 2rem;
-      min-width: 90px;
-    }
-
-    @media (max-width: 760px) {
-      .f-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <div class="tail wrap">
+    <a href={url("/")} class="minilink">&larr; home</a>
+    <span class="sparkle cyan" style="font-size:22px;"></span>
+    <a href={url("/shop")} class="minilink">shop &rarr;</a>
+  </div>
 </Layout>
+
+<style>
+  .f-hero {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 3rem);
+    min-height: 50vh;
+    flex-wrap: wrap;
+  }
+  .f-hero img { width: clamp(160px, 28vw, 280px); }
+  .f-hero h1 { font-size: clamp(2.8rem, 12vw, 8rem); }
+
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .pending { margin: 0; }
+  .box {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-content: center;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .pending figcaption {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 0.5rem;
+  }
+  .tail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem 0 1rem;
+  }
+</style>

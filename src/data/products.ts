@@ -76,13 +76,12 @@ export const products: Product[] = [
     slug: "vol-01-heavyweight-tee",
     name: "VOL.01 — Heavyweight Tee",
     price: "$65",
-    status: "coming-soon",
-    shipEstimate: "Ships August 2026",
-    blurb: "300gsm boxy tee. First apparel s'tuff. 100 made.",
+    status: "soldout",
+    blurb: "300gsm boxy tee. The first piece. 100 made, 100 gone.",
     description: [
-      "The inaugural TUFF garment. A 300gsm garment-dyed heavyweight tee with a boxy, structured fit and a hand-finished hem.",
-      "Limited to 100 units. Once they're gone, they're gone — this exact run will never be reprinted.",
-      "Join the list. Cards are charged at checkout and pieces ship August 2026.",
+      "The first TUFF garment. A 300gsm garment-dyed heavyweight tee with a boxy, structured fit and a hand-finished hem.",
+      "Limited to 100 units. They sold out, and this exact run will never be made again.",
+      "Kept here for the record. The next thing will be different.",
     ],
     images: ["/drops/placeholder.svg"],
     sizes: [

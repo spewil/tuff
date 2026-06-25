@@ -8,19 +8,9 @@ interface Props {
 }
 
 const {
-  title = "TUFF ENTERPRISES™",
-  description = "Limited edition apparel s'tuff. A wholly owned subsidiary of nothing.",
+  title = "TUFF",
+  description = "Limited edition apparel, made in small numbers.",
 } = Astro.props;
-
-const ticker = [
-  "SHAREHOLDER VALUE IS A LIFESTYLE",
-  "Q4 VIBES ONLY",
-  "SYNERGY IS ETERNAL",
-  "PLEASE DO NOT REPLY ALL",
-  "TUFF BOI IS A STATE OF MIND",
-  "OUR CORE COMPETENCY IS BEING TUFF",
-  "STAKEHOLDERS LOVE THIS ONE TRICK",
-];
 ---
 
 <!doctype html>
@@ -34,79 +24,14 @@ const ticker = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bungee&family=UnifrakturCook:wght@700&family=VT323&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
   </head>
   <body>
-    <div class="marquee" role="presentation">
-      <span>
-        {ticker.map((t) => <>★ {t} &nbsp;&nbsp;&nbsp;</>)}
-        {ticker.map((t) => <>★ {t} &nbsp;&nbsp;&nbsp;</>)}
-      </span>
-    </div>
-
     <main>
       <slot />
     </main>
-
-    <footer class="eula wrap">
-      <div class="window gold">
-        <div class="window-body">
-          <p class="memo">
-            <strong>TUFF ENTERPRISES™</strong> &mdash; A WHOLLY OWNED SUBSIDIARY OF
-            NOTHING. By scrolling you agree to our Terms, our Vibes, and to forward
-            this page to 7 colleagues within the hour. All cherubs are unionized.
-            Renaissance imagery courtesy of The Met (CC0). &copy; {new Date().getFullYear()},
-            in perpetuity, throughout the universe.
-          </p>
-          <p class="memo" style="margin-top:0.6rem;font-size:0.85em;color:#6a5a2a;">
-            TUFF, TUFF BOI, TUFF GRL and BUILT TUFF are pending trademarks of nobody.
-            Comic Sans is a registered everything of everyone. This site is load-bearing.
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <div class="taskbar-spacer"></div>
-
-    <nav class="taskbar" aria-label="Taskbar">
-      <a href={url("/")} class="start-btn"><span class="flag"></span>START</a>
-      <div class="tasks">
-        <a href={url("/") + "#stuff"} class="task-item">📁 S'TUFF.exe</a>
-        <a href={url("/factory")} class="task-item">🏭 FACTORY.exe</a>
-        <span class="task-item">📄 README.txt</span>
-      </div>
-      <div class="tray"><span id="clock">--:-- --</span></div>
-    </nav>
-
-    <script is:inline>
-      function tickTuff() {
-        var el = document.getElementById("clock");
-        if (!el) return;
-        var d = new Date();
-        var h = d.getHours();
-        var m = d.getMinutes();
-        var ap = h >= 12 ? "PM" : "AM";
-        h = h % 12;
-        if (h === 0) h = 12;
-        el.textContent = h + ":" + (m < 10 ? "0" + m : m) + " " + ap;
-      }
-      tickTuff();
-      setInterval(tickTuff, 1000 * 15);
-    </script>
-
-    <style>
-      .eula {
-        margin-top: 4rem;
-        margin-bottom: 2rem;
-      }
-      .eula .memo {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: #3a2e0a;
-      }
-    </style>
   </body>
 </html>
